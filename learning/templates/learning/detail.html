@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title_zh }}</title>
+    <!-- 引入你的 CSS -->
+    <link rel="stylesheet" href="{% static 'learning/style.css' %}">
+    <!-- 引入 SortableJS (拖拽库，必须从 CDN 引入) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+
+    <!-- 返回按钮 -->
+    <a href="{% url 'index' %}" class="back-to-menu">← 返回目录 / Меню</a>
+
+    <!-- Part 1: 课文展示区 -->
+    <div class="main-container">
+        <h1>
+            <span class="lang-zh">{{ lesson.title_zh }}</span>
+            <br>
+            <span class="lang-ru">{{ lesson.title_ru }}</span>
+        </h1>
+
+        <div class="text-block">
+            {% for text in texts %}
+            <!-- 循环显示每一句课文 -->
+            <div class="dialogue-entry">
+                <div class="source-language">
+                    <p class="chinese-text">{{ text.text_zh }}</p>
+                    <p class="pinyin-text">{{ text.text_pinyin }}</p>
+                </div>
+                <div class="translation-block">
+                    <p class="russian-translation">{{ text.text_ru }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Part 2: 习题游戏区 -->
+    <!-- 如果后台填写了习题数据，就显示这个区域 -->
+    {% if lesson.exercise_data %}
+    <div class="game-header">
+        <h2>练习 / Упражнения</h2>
+        <div id="lesson-instructions"></div>
+    </div>
+    
+    <div id="game-board">
+        <!-- JS 会自动在这里生成题目 -->
+    </div>
+    {% endif %}
+
+    <!-- 核心逻辑：把 Django 的 API 地址传给 JS -->
+    <script>
+        // 你的 main.js 需要这个变量来知道去哪里下载 JSON 数据
+        window.DjangoDataUrl = "{% url 'lesson_api' lesson.id %}";
+    </script>
+
+    <!-- 引入你的 main.js -->
+    <script src="{% static 'learning/main.js' %}"></script>
+
+</body>
+</html>

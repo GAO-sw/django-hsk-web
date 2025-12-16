@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>HSK 学习系统</title>
+    <!-- 简单的内联样式，为了快速展示 -->
+    <style>
+        body { font-family: sans-serif; padding: 50px; background-color: #f4f7f9; }
+        .lesson-card { 
+            background: white; padding: 20px; margin-bottom: 20px; 
+            border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        a { text-decoration: none; color: #0056b3; font-weight: bold; font-size: 1.2em; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>课程目录 / Оглавление</h1>
+    
+    {% if lessons %}
+        {% for lesson in lessons %}
+        <div class="lesson-card">
+            <a href="{% url 'lesson_detail' lesson.id %}">
+                {{ lesson.title_zh }} - {{ lesson.title_ru }}
+            </a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>暂无课程，请去后台添加。</p>
+    {% endif %}
+</body>
+</html>
