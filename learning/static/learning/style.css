@@ -1,0 +1,180 @@
+/* ========================================= */
+/* Part 1: 通用基础样式 (Common Base)        */
+/* ========================================= */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+h1, h2, h3, h4 { text-align: center; }
+
+/* 语言辅助类 */
+.lang-zh { font-weight: bold; color: #0056b3; }
+.lang-ru { color: #557; font-size: 0.9em; display: block; margin-top: 5px; font-style: italic; }
+
+/* ========================================= */
+/* Part 2: 课文展示样式 (From HSK1)          */
+/* ========================================= */
+.main-container {
+    width: 100%;
+    max-width: 850px;
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    margin-bottom: 30px;
+}
+
+.main-container > h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* 返回按钮 */
+.back-to-menu {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+.back-to-menu:hover { background-color: #5a6268; }
+
+/* 课文对话块 */
+.text-block {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.dialogue-entry {
+    margin-bottom: 15px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+.dialogue-entry:hover { background-color: #ecf0f1; }
+
+.chinese-text { font-size: 18px; font-weight: 500; color: #2c3e50; margin: 0; }
+.pinyin-text { font-size: 15px; color: #8e44ad; font-style: italic; margin: 0 0 5px 0; }
+
+.translation-block {
+    display: none; /* 默认隐藏翻译 */
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.russian-translation { font-size: 16px; color: #16a085; font-style: italic; margin: 0; }
+
+/* 生词表 */
+.new-words-simple {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+    font-size: 15px;
+}
+.new-words-simple strong { color: #c0392b; }
+.new-words-simple .pos { color: #777; font-style: italic; font-size: 0.9em; }
+
+
+/* ========================================= */
+/* Part 3: 游戏/习题样式 (From Sentence Game) */
+/* ========================================= */
+.game-header { width: 98%; max-width: 1800px; background-color: #fff; padding: 15px 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); margin-bottom: 25px; }
+
+#game-board { width: 100%; display: flex; flex-direction: column; gap: 30px; align-items: center; }
+
+.question-container { 
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    padding: 20px; 
+    width: 98%; 
+    max-width: 1800px; 
+    margin: 0 auto; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); 
+}
+
+.question-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+
+/* 拖拽字块样式 */
+.word-box-container { display: flex; flex-wrap: wrap; gap: 10px; padding: 15px; min-height: 60px; border: 2px dashed #d0dbe4; border-radius: 8px; background-color: #fafdff; }
+
+.word-pool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.word-category { background-color: #f8f9fa; border-radius: 8px; padding: 5px; border: 1px solid #e9ecef; }
+
+.word-block { 
+    background-color: #e0f7ff; 
+    color: #004085; 
+    padding: 8px 14px; 
+    border-radius: 6px; 
+    cursor: grab; 
+    user-select: none; 
+    border: 1px solid #b8e7ff; 
+    font-size: 1.1em; 
+    text-align: center; 
+}
+.word-block:active { cursor: grabbing; }
+
+/* 核心词特殊样式 */
+.word-block.core-word { background-color: #fffbe6; color: #856404; border: 1px solid #ffeeba; }
+
+/* 答案显示区域 */
+.answer-reveal-section { margin-top: 25px; padding-top: 15px; border-top: 1px solid #f0f0f0; text-align: center; }
+.show-answer-btn { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 1em; cursor: pointer; transition: background-color 0.2s; }
+.show-answer-btn:hover { background-color: #0056b3; }
+
+.answer-container { display: none; margin-top: 15px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef; text-align: left; }
+.answer-container.visible { display: block; }
+
+
+/* ========================================= */
+/* Part 4: 首页目录折叠样式 (Index/Menu)     */
+/* ========================================= */
+.level-container { width: 100%; max-width: 800px; margin-bottom: 15px; }
+.level-header { 
+    background-color: #0056b3; 
+    color: white; 
+    padding: 15px 25px; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    position: relative; 
+}
+.level-header:hover { background-color: #004a99; }
+
+.lesson-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    padding-top: 15px; 
+    overflow: hidden; 
+    max-height: 2000px; /* 展开状态 */
+    transition: max-height 0.5s ease;
+}
+.lesson-group.collapsed { max-height: 0; padding-top: 0; }
+
+.lesson-link { 
+    background-color: #ffffff; 
+    padding: 20px; 
+    border-radius: 10px; 
+    text-decoration: none; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08); 
+    display: block;
+}
+.lesson-link:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.12); }
